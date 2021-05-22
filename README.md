@@ -25,6 +25,8 @@ $ vi conf/airport-watcher.conf
 ネットワーク名はWiFiのSSIDです。
 `foo-5G` と `foo-2G` がある場合 `foo-*` のようにも書けます。
 
+どちらもスペースを含む名前に対応していません。
+
 対応するネットワーク環境はMacのネットワーク環境設定で作成しておいてください。
 
 ## 起動・停止
@@ -38,3 +40,5 @@ $ ./script/uninstall.sh
 ```
 
 起動中はcloneしたディレクトリを消したり移動してはいけません。
+
+conf/airport-watcher.conf を変更したときは一度停止してまた起動してください。
