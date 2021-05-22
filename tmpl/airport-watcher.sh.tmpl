@@ -1,0 +1,16 @@
+#!/bin/sh
+
+sleep 3
+
+SSID=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | awk '/ SSID: / { print $2 }'`
+
+case "$SSID" in__CASES__
+    *) LOCATION='Automatic' ;;
+esac
+
+CURRENT=`scselect | awk '/ \*/ { print substr($3, 2, length($3)-2) }'`
+
+if [ "$CURRENT" != "$LOCATION" ]; then
+    scselect "$LOCATION"
+    echo "airport-watcher.sh: SSID:[$SSID] LOCATION:[$LOCATION] FROM:[$CURRENT]" | logger
+fi
