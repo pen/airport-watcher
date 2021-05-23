@@ -14,13 +14,13 @@ if [[ -f "$TARGET/$PLIST" ]]; then
     exit
 fi
 
-
 cases=''
 while read -r name env; do
     echo "$name" | grep -q '^#' && continue
     cases="$cases\n    $name) LOCATION='$env' ;;"
 done < "conf/$CONF"
 
+mkdir -p dist
 sed -e "s!__CASES__!$cases!" "tmpl/$SCRIPT.tmpl" > "dist/$SCRIPT"
 chmod 755 "dist/$SCRIPT"
 
