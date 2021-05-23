@@ -16,6 +16,7 @@ fi
 
 cases=''
 while read -r name env; do
+    [[ -z "$env" ]] && continue
     echo "$name" | grep -q '^#' && continue
     cases="$cases\n    $name) LOCATION='$env' ;;"
 done < "conf/$CONF"
